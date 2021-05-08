@@ -34,7 +34,7 @@ def Download():
 		link_error.config(text="")
 		path_error.config(text="")
 		try:
-			Yt=Youtube(url)
+			Yt = YouTube(url)
 			try:
 				if Selected==options[0]:
 					typ=Yt.streams.get_highest_resolution()
@@ -53,15 +53,17 @@ def Download():
 					size=typ.filesize/1024000
 					size=round(size,1)
 					download_name.config(text="Name: "+name)
-					download_size.config(text="Size: "+size)
+					download_size.config(text="Size: "+str(size))
 					download_loc.config(text="Path: "+direct)
  
-				except:
+				except Exception as e:
+					print(e)
 					download_out.config(text="Download Failed",font=(12))
  
 			except:
 				download_out.config(text="Having Error",font=(12))
-		except:
+		except Exception as e:
+			print(e)
 			path_error.config(text="Please insert valid path")
  
 heading=Label(window,text="Youtube Video Downloader",background="gray3",foreground="dark orange",font=("Bahnschrift SemiBold",20,"bold"))
